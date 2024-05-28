@@ -1,11 +1,11 @@
 import '../../../../models/comments_model.dart';
-import '../datasource/comments_datasource_impl.dart';
+import '../datasource/comments_datasource.dart';
 import 'comment_repository.dart';
 
 class CommentRepositoryImpl implements  CommentRepository{
-  final CommentDatasourceImpl _commentDatasource;
+  final CommentDatasource _commentDatasource;
 
-  CommentRepositoryImpl({required CommentDatasourceImpl commentDatasource})
+  CommentRepositoryImpl({required CommentDatasource commentDatasource})
       : _commentDatasource = commentDatasource;
 
   @override
