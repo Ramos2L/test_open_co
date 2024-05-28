@@ -1,12 +1,14 @@
 import 'dart:convert';
 
-class PostModel {
+import 'package:equatable/equatable.dart';
+
+class PostModel extends Equatable {
   final int userId;
   final int id;
   final String title;
   final String body;
 
-  PostModel({
+  const PostModel({
     required this.userId,
     required this.id,
     required this.title,
@@ -46,4 +48,7 @@ class PostModel {
   String toString() {
     return 'PostModel: $userId, id $id, title: $title, body $body';
   }
+
+  @override
+  List<Object?> get props => [userId, id, title, body];
 }

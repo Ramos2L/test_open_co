@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:teste_open_co/core/utils/initials_name.dart';
 
+import '../../../core/ui/helpers/error_helper.dart';
 import '../../../core/ui/helpers/loader.dart';
+import '../../../core/utils/random_colors.dart';
 import '../bloc/comments_bloc.dart';
 
 class CommentsPage extends StatelessWidget {
@@ -14,7 +16,7 @@ class CommentsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Comments')),
+      appBar: AppBar(),
       body: BlocProvider(
         create: (context) => Modular.get<CommentsBloc>()..add(CommentsDataEvent(postId: postId)),
         child: BlocBuilder<CommentsBloc, CommentsState>(
@@ -38,19 +40,20 @@ class CommentsPage extends StatelessWidget {
                             child: Row(
                               children: [
                                 CircleAvatar(
+                                  backgroundColor: RandomColors.getRandomColor(),
                                   radius: 16,
-                                  child: Text(InitialsName.nameUser(name: post.email)),
+                                  child: Text(
+                                    InitialsName.nameUser(name: post.email).toUpperCase(),
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
                                 ),
                                 const SizedBox(width: 10),
-                                Text(post.email)
+                                Text(post.email),
                               ],
                             ),
                           ),
-                          ListTile(
-                            title: Text(post.name),
-                            subtitle: Text(post.body),
-                          ),
-                          const SizedBox(height: 10)
+                          ListTile(title: Text(post.name), subtitle: Text(post.body)),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     );
@@ -58,9 +61,16 @@ class CommentsPage extends StatelessWidget {
                 ),
               );
             } else if (state is CommentsError) {
-              return Center(child: Text(state.error));
+              return ErrorHelper(
+                onPressedButton: () =>
+                    Modular.get<CommentsBloc>()..add(CommentsDataEvent(postId: postId)),
+              );
             } else {
-              return const Center(child: Text('Unknown state'));
+              return ErrorHelper(
+                message: 'Ops! Algo está errado, informe o suporte',
+                onPressedButton: () =>
+                    Modular.get<CommentsBloc>()..add(CommentsDataEvent(postId: postId)),
+              );
             }
           },
         ),

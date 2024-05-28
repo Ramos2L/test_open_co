@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:teste_open_co/core/utils/random_images.dart';
 import 'package:teste_open_co/features/posts/bloc/posts_bloc.dart';
 
+import '../../../core/ui/helpers/error_helper.dart';
 import '../../../core/ui/helpers/loader.dart';
 
 class PostsPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class PostsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Posts')),
+      appBar: AppBar(title: const Text('Posts Open')),
       body: BlocProvider(
         create: (context) => Modular.get<PostsBloc>()..add(const PostsListDataEvent()),
         child: BlocBuilder<PostsBloc, PostsState>(
@@ -25,6 +26,7 @@ class PostsPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: ListView.builder(
                   itemCount: state.postModel.length,
+                  cacheExtent: 15,
                   itemBuilder: (context, index) {
                     final post = state.postModel[index];
                     return Card(
@@ -45,18 +47,12 @@ class PostsPage extends StatelessWidget {
                               children: <Widget>[
                                 Text(
                                   post.title,
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    color: Colors.grey[800],
-                                  ),
+                                  style: TextStyle(fontSize: 22, color: Colors.grey[800]),
                                 ),
                                 Container(height: 10),
                                 Text(
-                                  post.title,
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.grey[700],
-                                  ),
+                                  post.body,
+                                  style: TextStyle(fontSize: 15, color: Colors.grey[700]),
                                 ),
                                 Row(
                                   children: <Widget>[
@@ -66,7 +62,7 @@ class PostsPage extends StatelessWidget {
                                         foregroundColor: Colors.transparent,
                                       ),
                                       child: const Text(
-                                        "EXPLORE",
+                                        "COMMENT",
                                         style: TextStyle(color: Colors.lightGreen),
                                       ),
                                       onPressed: () =>
@@ -77,7 +73,7 @@ class PostsPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Container(height: 5),
+                          Container(height: 10),
                         ],
                       ),
                     );
@@ -85,9 +81,14 @@ class PostsPage extends StatelessWidget {
                 ),
               );
             } else if (state is PostsError) {
-              return Center(child: Text(state.error));
+              return ErrorHelper(
+                onPressedButton: () => Modular.get<PostsBloc>()..add(const PostsListDataEvent()),
+              );
             } else {
-              return const Center(child: Text('Unknown state'));
+              return ErrorHelper(
+                message: 'Ops! Algo está errado, informe o suporte',
+                onPressedButton: () => Modular.get<PostsBloc>()..add(const PostsListDataEvent()),
+              );
             }
           },
         ),

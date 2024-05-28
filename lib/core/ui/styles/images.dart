@@ -20,6 +20,7 @@ class Images {
   String get wedding => "assets/images/undraw_wedding.svg";
   String get woman => "assets/images/undraw_woman.svg";
   String get researching => "assets/images/undraw_researching.svg";
+  String get bug => "assets/images/undraw_bug.svg";
 }
 
 extension ImagesAppExtensions on BuildContext {

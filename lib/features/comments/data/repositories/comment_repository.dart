@@ -1,13 +1,6 @@
 import '../../../../models/comments_model.dart';
-import '../datasource/comments_datasource.dart';
+import '../datasource/comments_datasource_impl.dart';
 
-class CommentRepository {
-  final CommentDatasource _commentDatasource;
-
-  CommentRepository({required CommentDatasource commentDatasource})
-      : _commentDatasource = commentDatasource;
-
-  Future<List<CommentModel>> getComment({required int id}) async {
-    return await _commentDatasource.getCommmet(id);
-  }
+abstract class CommentRepository {
+  Future<List<CommentModel>> getComment({required int id});
 }

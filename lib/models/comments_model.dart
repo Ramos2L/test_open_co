@@ -1,13 +1,15 @@
 import 'dart:convert';
 
-class CommentModel {
+import 'package:equatable/equatable.dart';
+
+class CommentModel extends Equatable {
   final int postId;
   final int id;
   final String name;
   final String email;
   final String body;
 
-  CommentModel({
+  const CommentModel({
     required this.postId,
     required this.id,
     required this.name,
@@ -51,4 +53,7 @@ class CommentModel {
   String toString() {
     return 'CommentsModel: $postId, id $id, name: $name, email $email, body $body';
   }
+
+  @override
+  List<Object?> get props => [postId, id, name, email, body];
 }
