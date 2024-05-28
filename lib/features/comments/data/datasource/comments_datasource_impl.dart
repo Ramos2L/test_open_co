@@ -4,13 +4,13 @@ import '../../../../models/comments_model.dart';
 import 'comments_datasource.dart';
 
 class CommentDatasourceImpl implements CommentDatasource {
-  final ClientService _httpService;
+  final ClientService _clientService;
 
-  CommentDatasourceImpl({required ClientService httpService}) : _httpService = httpService;
+  CommentDatasourceImpl({required ClientService clientService}) : _clientService = clientService;
 
   @override
   Future<List<CommentModel>> getCommmet(int id) async {
-    final response = await _httpService.get('/posts/$id/comments');
+    final response = await _clientService.get('/posts/$id/comments');
     if (response.statusCode == 200) {
       return (response.data as List).map((comments) => CommentModel.fromJson(comments)).toList();
     } else {
