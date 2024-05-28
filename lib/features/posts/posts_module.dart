@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:teste_open_co/features/posts/data/datasource/posts_datasource_impl.dart';
 import 'package:teste_open_co/features/posts/presentation/posts_page.dart';
 
 import '../../app/app_module.dart';
@@ -6,6 +7,7 @@ import '../comments/presentation/comments_page.dart';
 import 'bloc/posts_bloc.dart';
 import 'data/datasource/posts_datasource.dart';
 import 'data/repositories/post_repository.dart';
+import 'data/repositories/post_repository_impl.dart';
 
 class PostsModule extends Module {
 
@@ -16,8 +18,8 @@ class PostsModule extends Module {
 
   @override
   void binds(i) {
-    i.addSingleton(PostRepository.new);
-    i.addSingleton(PostsDatasource.new);
+    i.addSingleton<PostRepository>(PostRepositoryImpl.new);
+    i.addSingleton<PostsDatasource>(PostsDatasourceImpl.new);
     i.addSingleton(PostsBloc.new);
   }
 
