@@ -25,7 +25,7 @@ class PostsPage extends StatelessWidget {
                     title: Text(post.title),
                     subtitle: Text(post.body),
                     onTap: () {
-                      Modular.to.pushNamed('/comments');
+                      Modular.to.pushNamed('/comments/${post.userId}');
                     },
                   );
                 },

@@ -21,6 +21,6 @@ class CommentsModule extends Module {
 
   @override
   void routes(r) {
-    r.child('/', child: (context) => const CommentsPage());
+    r.child('/:postId', child: (context) => CommentsPage(postId: int.parse(r.args.params['postId'])));
   }
 }

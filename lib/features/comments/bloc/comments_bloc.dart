@@ -5,6 +5,7 @@ import '../../../models/comments_model.dart';
 import '../data/repositories/comment_repository.dart';
 
 part 'comments_event.dart';
+
 part 'comments_state.dart';
 
 class CommentsBloc extends Bloc<CommentsEvent, CommentsState> {
@@ -17,7 +18,7 @@ class CommentsBloc extends Bloc<CommentsEvent, CommentsState> {
   Future<void> _commentsDataEvent(CommentsDataEvent event, Emitter<CommentsState> emit) async {
     emit(const CommentsLoading());
     try {
-      final comments = await repository.getComment(id: 1);
+      final comments = await repository.getComment(id: event.postId);
       emit(CommentsData(commentModel: comments));
     } catch (e) {
       emit(CommentsError(e.toString()));
