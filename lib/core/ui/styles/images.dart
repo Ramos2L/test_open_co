@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Images {
   static Images? _instance;
 
@@ -17,4 +19,9 @@ class Images {
   String get users => "assets/images/undraw_users.svg";
   String get wedding => "assets/images/undraw_wedding.svg";
   String get woman => "assets/images/undraw_woman.svg";
+  String get researching => "assets/images/undraw_researching.svg";
+}
+
+extension ImagesAppExtensions on BuildContext {
+  Images get images => Images.i;
 }

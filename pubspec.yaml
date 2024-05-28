@@ -75,6 +75,7 @@ flutter:
      - assets/images/undraw_users.svg
      - assets/images/undraw_wedding.svg
      - assets/images/undraw_woman.svg
+     - assets/images/undraw_researching.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -12,6 +12,7 @@ class RandomImages {
       "assets/images/undraw_users.svg",
       "assets/images/undraw_wedding.svg",
       "assets/images/undraw_woman.svg",
+      "assets/images/undraw_researching.svg",
     ];
 
     var length = images.length;
