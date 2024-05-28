@@ -40,6 +40,7 @@ dependencies:
   bloc: ^8.1.4
   dio: ^5.4.3+1
   equatable: ^2.0.5
+  flutter_svg: ^1.1.5
 
 dev_dependencies:
   flutter_test:
@@ -64,9 +65,16 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+     - assets/images/undraw_baby.svg
+     - assets/images/undraw_barista.svg
+     - assets/images/undraw_home.svg
+     - assets/images/undraw_love.svg
+     - assets/images/undraw_posts.svg
+     - assets/images/undraw_traveling.svg
+     - assets/images/undraw_users.svg
+     - assets/images/undraw_wedding.svg
+     - assets/images/undraw_woman.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
