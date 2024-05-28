@@ -1,15 +1,16 @@
-import 'package:dio/dio.dart';
 import 'package:teste_open_co/features/posts/data/datasource/posts_datasource.dart';
 import 'package:teste_open_co/models/post_model.dart';
 
-class PostsDatasourceImpl implements PostsDatasource {
-  final Dio _dio;
+import '../../../../core/services/client_service.dart';
 
-  PostsDatasourceImpl({required Dio dio}) : _dio = dio;
+class PostsDatasourceImpl implements PostsDatasource {
+  final ClientService _httpService;
+
+  PostsDatasourceImpl({required ClientService httpService}) : _httpService = httpService;
 
   @override
   Future<List<PostModel>> getPosts() async {
-    final response = await _dio.get('/posts');
+    final response = await _httpService.get('/posts');
     if (response.statusCode == 200) {
       return (response.data as List).map((post) => PostModel.fromJson(post)).toList();
     } else {

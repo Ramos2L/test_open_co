@@ -1,7 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:teste_open_co/core/services/dio_service.dart';
 import 'package:teste_open_co/features/comments/presentation/comments_page.dart';
 
 import '../../app/app_module.dart';
+import '../../core/services/client_service.dart';
 import 'bloc/comments_bloc.dart';
 import 'data/datasource/comments_datasource.dart';
 import 'data/datasource/comments_datasource_impl.dart';
@@ -14,6 +16,7 @@ class CommentsModule extends Module {
 
   @override
   void binds(i) {
+    i.addSingleton<ClientService>(DioService.new);
     i.addSingleton<CommentRepository>(CommentRepositoryImpl.new);
     i.addSingleton<CommentDatasource>(CommentDatasourceImpl.new);
     i.addSingleton(CommentsBloc.new);
@@ -21,7 +24,9 @@ class CommentsModule extends Module {
 
   @override
   void routes(r) {
-    r.child('/:postId',
-        child: (context) => CommentsPage(postId: int.parse(r.args.params['postId'])));
+    r.child(
+      '/:postId',
+      child: (context) => CommentsPage(postId: int.parse(r.args.params['postId'])),
+    );
   }
 }

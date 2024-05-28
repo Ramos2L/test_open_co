@@ -1,17 +1,16 @@
-import 'package:dio/dio.dart';
+import 'package:teste_open_co/core/services/client_service.dart';
 
 import '../../../../models/comments_model.dart';
 import 'comments_datasource.dart';
 
-///CRIAR ABSTRACAO PARA DIO
 class CommentDatasourceImpl implements CommentDatasource {
-  final Dio _dio;
+  final ClientService _httpService;
 
-  CommentDatasourceImpl({required Dio dio}) : _dio = dio;
+  CommentDatasourceImpl({required ClientService httpService}) : _httpService = httpService;
 
   @override
   Future<List<CommentModel>> getCommmet(int id) async {
-    final response = await _dio.get('/posts/$id/comments');
+    final response = await _httpService.get('/posts/$id/comments');
     if (response.statusCode == 200) {
       return (response.data as List).map((comments) => CommentModel.fromJson(comments)).toList();
     } else {
