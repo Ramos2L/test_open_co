@@ -12,10 +12,10 @@ class CommentsBloc extends Bloc<CommentsEvent, CommentsState> {
   final CommentRepository repository;
 
   CommentsBloc(this.repository) : super(const CommentsInitial()) {
-    on<CommentsDataEvent>(_commentsDataEvent);
+    on<GetCommentsDataByPostIdEvent>(_getCommentsDataByPostIdEvent);
   }
 
-  Future<void> _commentsDataEvent(CommentsDataEvent event, Emitter<CommentsState> emit) async {
+  Future<void> _getCommentsDataByPostIdEvent(GetCommentsDataByPostIdEvent event, Emitter<CommentsState> emit) async {
     emit(const CommentsLoading());
     try {
       final comments = await repository.getComment(id: event.postId);

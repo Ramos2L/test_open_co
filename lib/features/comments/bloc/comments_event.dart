@@ -7,9 +7,9 @@ abstract class CommentsEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class CommentsDataEvent extends CommentsEvent {
+class GetCommentsDataByPostIdEvent extends CommentsEvent {
   final int postId;
-  const CommentsDataEvent({required this.postId});
+  const GetCommentsDataByPostIdEvent({required this.postId});
 
   @override
   List<Object?> get props => [postId];

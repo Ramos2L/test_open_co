@@ -18,7 +18,10 @@ class CommentsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: BlocProvider(
-        create: (context) => Modular.get<CommentsBloc>()..add(CommentsDataEvent(postId: postId)),
+        create: (context) => Modular.get<CommentsBloc>()
+          ..add(
+            GetCommentsDataByPostIdEvent(postId: postId),
+          ),
         child: BlocBuilder<CommentsBloc, CommentsState>(
           builder: (context, state) {
             if (state is CommentsLoading) {
@@ -63,13 +66,13 @@ class CommentsPage extends StatelessWidget {
             } else if (state is CommentsError) {
               return ErrorHelper(
                 onPressedButton: () =>
-                    Modular.get<CommentsBloc>()..add(CommentsDataEvent(postId: postId)),
+                    Modular.get<CommentsBloc>()..add(GetCommentsDataByPostIdEvent(postId: postId)),
               );
             } else {
               return ErrorHelper(
                 message: 'Ops! Algo está errado, informe o suporte',
                 onPressedButton: () =>
-                    Modular.get<CommentsBloc>()..add(CommentsDataEvent(postId: postId)),
+                    Modular.get<CommentsBloc>()..add(GetCommentsDataByPostIdEvent(postId: postId)),
               );
             }
           },
