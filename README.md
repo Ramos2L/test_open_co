@@ -55,6 +55,9 @@ A API do <a href="https://jsonplaceholder.typicode.com"> {JSON} Placeholder</a> 
  
 # Telas implementadas
 
+<img height="600em" src=https://github.com/Ramos2L/test_open_co/assets/58201578/996bf9ba-84fb-46a3-b45a-b56afdc30fcd />
+<img height="600em" src=https://github.com/Ramos2L/test_open_co/assets/58201578/f4459a1d-3d52-4bda-b827-acea2667dbfc />
+
 O app pode ser baixado aqui:
 
 Made with :heart: and Flutter 3.13.9 e Dart 3.1.5
