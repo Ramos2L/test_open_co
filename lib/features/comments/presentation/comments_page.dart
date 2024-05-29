@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:teste_open_co/core/utils/initials_name.dart';
+import 'package:teste_open_co/features/comments/presentation/widget/card_comments_widget.dart';
 
 import '../../../core/ui/helpers/error_helper.dart';
 import '../../../core/ui/helpers/loader.dart';
-import '../../../core/utils/random_colors.dart';
 import '../bloc/comments_bloc.dart';
 
 class CommentsPage extends StatelessWidget {
@@ -32,33 +31,11 @@ class CommentsPage extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: state.commentModel.length,
                   itemBuilder: (context, index) {
-                    final post = state.commentModel[index];
-                    return Card(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: RandomColors.getRandomColor(),
-                                  radius: 16,
-                                  child: Text(
-                                    InitialsName.nameUser(name: post.email).toUpperCase(),
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Text(post.email),
-                              ],
-                            ),
-                          ),
-                          ListTile(title: Text(post.name), subtitle: Text(post.body)),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
+                    final comment = state.commentModel[index];
+                    return CardCommentsWidget(
+                      email: comment.email,
+                      name: comment.name,
+                      body: comment.body,
                     );
                   },
                 ),
