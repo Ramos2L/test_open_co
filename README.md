@@ -20,7 +20,7 @@ Esse projeto trabalha com o conceito de arquitetura utilizando os conceitos BLoC
 A responsabilidade da camada de dados é recuperar/manipular dados de uma ou mais fontes.
 A camada de dados pode ser dividida em duas partes:
 - Repositório
-- - A camada de repositório é um wrapper em torno de um ou mais provedores de dados com os quais a camada de bloco se comunica.
+- - A camada de repositório é um wrapper em torno de um ou mais provedores de dados com os quais a camada de bloc se comunica.
 - Datasource
 - - Esta camada é o nível mais baixo da aplicação e interage com bancos de dados, solicitações de rede e outras fontes de dados assíncronas.
 
